@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors game</title>
+</head>
+<body>
+    <h1>Rock-Paper-Scissors Game</h1>
+    <p>Here you will input upto 5 numbers as instructed and on you devtools check your console to see your score.</p>
+    <script>
+        function getComputerChoice(){
+            let randomValue = Math.random();
+            if( randomValue <= 0.33){
+                return "rock";
+            }else if (randomValue > 0.33 && randomValue <= 0.66){
+                return "paper";
+            }else if (randomValue > 0.66 && randomValue <= 1) {
+                return "scissors";
+            }else {
+                return "Undefined value";
+            }
+         }
+        function getHumanChoice() {
+            let userInput = parseInt(prompt("Enter a number between 0 - 9 :"))
+            if(userInput >= 0 && userInput <= 3) {
+                return "rock";
+            }else if(userInput > 3 && userInput <= 6 ) {
+                return "paper";
+            }else if(userInput > 6 && userInput <= 9) {
+                return "scissors";
+            }else {
+                return null;
+            }
+         }
+         humanScore = 0;
+         computerScore = 0;
+         function playGround(humanChoice, computerChoice) {
+                if (humanChoice === null) {
+                    return "Input within the instructed range";
+                }else if( humanChoice === computerChoice){
+                    return "The round is a tie";
+                 }else if ( humanChoice === "rock" && computerChoice === "scissors") {
+                    humanScore++
+                    return "You win, rock beats scissors";
+                 }else if (humanChoice === "paper" && computerChoice === "rock") {
+                    humanScore++
+                    return "You win, paper beats rock";
+                 }else if (humanChoice === "scissors" && computerChoice === "paper") {
+                    humanScore++
+                    return "You win, scissors beats paper"
+                 }else {
+                    computerScore++
+                    return "You lost"
+                 }
+         }
+         for(let round = 1;round < 6;round++) {
+              console.log(`Round: ${round}`);
+              let humanChoice = getHumanChoice();
+              let computerChoice = getComputerChoice();
+              console.log(playGround(humanChoice,computerChoice));
+              console.log(`Scores after round ${round}: Your score: ${humanScore} and Computer score: ${computerScore}`);
+
+         }
+         console.log("Stop");
+         if(humanScore > computerScore) {
+            console.log(`You win with ${humanScore} point(s) against ${computerScore} point(s)`);
+         }else if(humanScore < computerScore) {
+            console.log(`You lost with ${humanScore} point(s) against ${computerScore} point(s)`);
+         }else if(humanScore === computerScore) {
+            console.log(`It is a tie of ${humanScore} point(s) each`);
+         }else{
+            console.log("Invalid inputs");
+         }
+    </script>
+</body>
+</html>                                  
